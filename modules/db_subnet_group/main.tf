@@ -6,4 +6,8 @@ resource "aws_db_subnet_group" "this" {
   subnet_ids  = ["${var.subnet_ids}"]
 
   tags = "${merge(var.tags, map("Name", format("%s", var.identifier)))}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
